@@ -1,0 +1,19 @@
+{
+    admin off
+}
+
+{$SERVER_NAME}
+
+log
+
+route {
+
+    reverse_proxy http://portainer:9443
+    encode zstd gzip
+    file_server
+    
+}
+
+
+
+

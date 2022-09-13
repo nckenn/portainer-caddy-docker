@@ -1,0 +1,41 @@
+# image: https://hub.docker.com/r/portainer/portainer
+
+version: '3.4'
+
+services:
+  caddy:
+    build:
+      context: ./caddy
+    container_name: portainer_proxy
+    restart: unless-stopped
+    environment:
+      SERVER_NAME: ${SERVER_NAME:-localhost}
+
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+    ports:
+      # HTTP
+      - target: 80
+        published: ${HTTP_PORT:-80}
+        protocol: tcp
+      # HTTPS
+      - target: 443
+        published: ${HTTPS_PORT:-443}
+        protocol: tcp
+      # HTTP/3
+      - target: 443
+        published: ${HTTP3_PORT:-443}
+        protocol: udp
+
+  portainer:
+    image: portainer/portainer-${APP_DISTRIBUTION}:${APP_VERSION}
+    restart: unless-stopped
+    volumes:
+      - portainer_data:/data
+      - /var/run/docker.sock:/var/run/docker.sock
+
+volumes:
+  caddy_data:
+  caddy_config:
+  portainer_data:
