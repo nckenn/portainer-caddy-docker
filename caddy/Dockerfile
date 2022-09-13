@@ -8,5 +8,5 @@ RUN xcaddy build
 # Caddy image
 FROM caddy:${CADDY_VERSION}-alpine AS app_caddy
 
-COPY --from=app_caddy /usr/bin/caddy /usr/bin/caddy
+COPY --from=app_caddy_builder /usr/bin/caddy /usr/bin/caddy
 COPY Caddyfile /etc/caddy/Caddyfile
