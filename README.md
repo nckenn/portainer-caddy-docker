@@ -9,7 +9,7 @@ Clone this repository.
 Go into the directory containing your project (`<project-name>`), and start the app in production mode:
 
 ```
-SERVER_NAME=your-domain-name.example.com
+SERVER_NAME=your-domain-name.example.com \
 docker stack deploy -c docker-compose.yml portainer
 ```
 
