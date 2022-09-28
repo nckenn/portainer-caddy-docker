@@ -6,13 +6,8 @@
 
 log
 
-route {
+reverse_proxy http://portainer:9000
 
-    reverse_proxy http://portainer:9000
-    encode zstd gzip
-    file_server
-    
-}
 
 
 

@@ -1,14 +1,10 @@
 
 # Portainer Docker setup
-A Portainer setup for production.
+A Portainer setup for production using docker swarm.
 
 ## Guide
 
-### Download and build the latest versions of the images
-```docker-compose build --pull --no-cache```
+### Deploy portainer 
+```docker stack deploy -c docker-compose portainer```
 
-## Start Docker Compose in detached mode:
-
-### For Production
-```docker compose up -d```
 
